@@ -1,17 +1,154 @@
 <template>
-  <div v-if="isLoading">
-    <SkeletonProductCard />
-  </div>
-  <div v-else>
-    <p>{{ product.id }}</p>
-    <p>Title: {{ product.title }}</p>
-    <p>Price: ${{ product.price }}</p>
-    <p>Description: {{ product.description }}</p>
-    <p>Category: {{ product.category }}</p>
-    <img :src="product.image" :alt="product.title" width="200px" height="200px" />
-    <button @click="getNextProduct">Next Product</button>
+  <div class="product-page">
+    <SkeletonProductCard v-if="isLoading" />
+    <div
+      v-else
+      class="container-page"
+      :class="
+        !isProductAvailable
+          ? 'bg-page-grey'
+          : this.isMen
+          ? 'bg-page-blue'
+          : 'bg-page-pink'
+      "
+    >
+      <div class="pattern">
+        <img src="/bg-pattern.svg" alt="pattern background" />
+      </div>
+      <div class="card">
+        <div v-if="!isProductAvailable" class="product-unavailable-container">
+          <div class="overlay">
+            <img src="/sad-face.png" alt="background-sad-face" />
+          </div>
+          <div class="detail-product">
+            <p>This product is unavailable to show</p>
+            <div class="buttons">
+              <button @click="getNextProduct" class="button-next">
+                Next Product
+              </button>
+            </div>
+          </div>
+        </div>
+        <div v-else class="product-container">
+          <div class="product-image">
+            <img :src="product.image" :alt="product.title" />
+          </div>
+          <div
+            class="product-content"
+            :class="isMen ? 'scrollbar-mens' : 'scrollbar-womens'"
+          >
+            <div
+              class="product-title"
+              :class="isMen ? 'text-mens' : 'text-womens'"
+            >
+              <p>{{ product.title }}</p>
+            </div>
+            <div class="product-label">
+              <p>{{ product.category }}</p>
+              <div class="product-rate">
+                <p>{{ product.rating.rate }}/5</p>
+                <div>
+                  <div class="circles-rate">
+                    <span
+                      class="circle"
+                      :class="
+                        product.rating.rate < 0.5
+                          ? isMen
+                            ? 'bgrd-white-navy'
+                            : 'bgrd-white-purple'
+                          : isMen
+                          ? 'bgrd-navy'
+                          : 'bgrd-purple'
+                      "
+                    ></span>
+                    <span
+                      class="circle"
+                      :class="
+                        product.rating.rate < 1.5
+                          ? isMen
+                            ? 'bgrd-white-navy'
+                            : 'bgrd-white-purple'
+                          : isMen
+                          ? 'bgrd-navy'
+                          : 'bgrd-purple'
+                      "
+                    ></span>
+                    <span
+                      class="circle"
+                      :class="
+                        product.rating.rate < 2.5
+                          ? isMen
+                            ? 'bgrd-white-navy'
+                            : 'bgrd-white-purple'
+                          : isMen
+                          ? 'bgrd-navy'
+                          : 'bgrd-purple'
+                      "
+                    ></span>
+                    <span
+                      class="circle"
+                      :class="
+                        product.rating.rate < 3.5
+                          ? isMen
+                            ? 'bgrd-white-navy'
+                            : 'bgrd-white-purple'
+                          : isMen
+                          ? 'bgrd-navy'
+                          : 'bgrd-purple'
+                      "
+                    ></span>
+                    <span
+                      class="circle"
+                      :class="
+                        product.rating.rate < 4.5
+                          ? isMen
+                            ? 'bgrd-white-navy'
+                            : 'bgrd-white-purple'
+                          : isMen
+                          ? 'bgrd-navy'
+                          : 'bgrd-purple'
+                      "
+                    ></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div class="product-description">
+              <p>{{ product.description }}</p>
+            </div>
+            <div class="product-checkout">
+              <hr />
+              <div
+                class="product-price"
+                :class="isMen ? 'text-mens' : 'text-womens'"
+              >
+                <p>${{ product.price }}</p>
+              </div>
+              <div class="product-button">
+                <button
+                  class="btn-buy"
+                  :class="isMen ? 'btn-mens' : 'btn-womens'"
+                >
+                  Buy Now
+                </button>
+                <button
+                  class="btn-next"
+                  :class="isMen ? 'btn-mens-border' : 'btn-womens-border'"
+                  @click="getNextProduct"
+                >
+                  Next Product
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
+
+<style src="../assets/styles/productcard.css"></style>
 
 <script>
 import axios from "axios";
@@ -24,9 +161,12 @@ export default {
   },
   data() {
     return {
-      isLoading: true,
       product: {},
-      currentId: 1,
+      currentProduct: 1,
+      isLoading: true,
+      isProductAvailable: false,
+      isWomen: false,
+      isMen: false,
     };
   },
   methods: {
@@ -34,19 +174,32 @@ export default {
       this.isLoading = true;
       try {
         const response = await axios.get(
-          `https://fakestoreapi.com/products/${this.currentId}`
+          `https://fakestoreapi.com/products/${this.currentProduct}`
         );
         this.product = response.data;
+        if (this.product.category === "men's clothing") {
+          this.isProductAvailable = true;
+          this.isWomen = false;
+          this.isMen = true;
+        } else if (this.product.category === "women's clothing") {
+          this.isProductAvailable = true;
+          this.isWomen = true;
+          this.isMen = false;
+        } else {
+          this.isProductAvailable = false;
+          this.isWomen = false;
+          this.isMen = false;
+        }
+        this.isLoading = false;
       } catch (error) {
         console.log(error);
       }
-      this.isLoading = false;
     },
     getNextProduct() {
-      if (this.currentId < 20) {
-        this.currentId++;
+      if (this.currentProduct < 20) {
+        this.currentProduct++;
       } else {
-        this.currentId = 1;
+        this.currentProduct = 1;
       }
       this.getProductById();
     },
