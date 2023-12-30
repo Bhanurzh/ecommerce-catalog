@@ -7,4 +7,4 @@ Merupakan sebuah website yang menampilkan produk penjualan dari beberapa kategor
 Website ini dikembangkan sebagai bagian dari Final task dalam program Project-Based Internship di Core Initiative, dengan fokus pada bidang Front End Developer.
 
 Anda dapat mengakses situs web melalui tautan berikut:
--[E-commerce Catalog](https://ecommerce-catalog-nu.vercel.app/)
+- [E-commerce Catalog](https://ecommerce-catalog-nu.vercel.app/)
