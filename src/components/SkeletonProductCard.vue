@@ -16,6 +16,4 @@ export default {
 };
 </script>
 
-<style scoped>
-@import "../assets/styles/skeleton.css";
-</style>
+<style src="../assets/styles/skeleton.css" scoped></style>
