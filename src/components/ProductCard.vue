@@ -6,18 +6,18 @@
       class="container-page"
       :class="
         !isProductAvailable
-          ? 'bg-page-grey'
+          ? 'bg-page-gray'
           : this.isMen
           ? 'bg-page-blue'
-          : 'bg-page-pink'
+          : 'bg-page-magenta'
       "
     >
-      <div class="pattern">
+      <div class="bg-pattern">
         <img src="/bg-pattern.svg" alt="pattern background" />
       </div>
       <div class="card">
         <div v-if="!isProductAvailable" class="product-unavailable-container">
-          <div class="overlay">
+          <div class="bg-unavailable">
             <img src="/sad-face.png" alt="background-sad-face" />
           </div>
           <div class="detail-product">
@@ -29,7 +29,7 @@
             </div>
           </div>
         </div>
-        <div v-else class="product-container">
+        <div v-else class="product-available-container">
           <div class="product-image">
             <img :src="product.image" :alt="product.title" />
           </div>
@@ -54,11 +54,11 @@
                       :class="
                         product.rating.rate < 0.5
                           ? isMen
-                            ? 'bgrd-white-navy'
-                            : 'bgrd-white-purple'
+                            ? 'dot-white-men'
+                            : 'dot-white-women'
                           : isMen
-                          ? 'bgrd-navy'
-                          : 'bgrd-purple'
+                          ? 'dot-blue-men'
+                          : 'dot-magenta-women'
                       "
                     ></span>
                     <span
@@ -66,11 +66,11 @@
                       :class="
                         product.rating.rate < 1.5
                           ? isMen
-                            ? 'bgrd-white-navy'
-                            : 'bgrd-white-purple'
+                            ? 'dot-white-men'
+                            : 'dot-white-women'
                           : isMen
-                          ? 'bgrd-navy'
-                          : 'bgrd-purple'
+                          ? 'dot-blue-men'
+                          : 'dot-magenta-women'
                       "
                     ></span>
                     <span
@@ -78,11 +78,11 @@
                       :class="
                         product.rating.rate < 2.5
                           ? isMen
-                            ? 'bgrd-white-navy'
-                            : 'bgrd-white-purple'
+                            ? 'dot-white-men'
+                            : 'dot-white-women'
                           : isMen
-                          ? 'bgrd-navy'
-                          : 'bgrd-purple'
+                          ? 'dot-blue-men'
+                          : 'dot-magenta-women'
                       "
                     ></span>
                     <span
@@ -90,11 +90,11 @@
                       :class="
                         product.rating.rate < 3.5
                           ? isMen
-                            ? 'bgrd-white-navy'
-                            : 'bgrd-white-purple'
+                            ? 'dot-white-men'
+                            : 'dot-white-women'
                           : isMen
-                          ? 'bgrd-navy'
-                          : 'bgrd-purple'
+                          ? 'dot-blue-men'
+                          : 'dot-magenta-women'
                       "
                     ></span>
                     <span
@@ -102,11 +102,11 @@
                       :class="
                         product.rating.rate < 4.5
                           ? isMen
-                            ? 'bgrd-white-navy'
-                            : 'bgrd-white-purple'
+                            ? 'dot-white-men'
+                            : 'dot-white-women'
                           : isMen
-                          ? 'bgrd-navy'
-                          : 'bgrd-purple'
+                          ? 'dot-blue-men'
+                          : 'dot-magenta-women'
                       "
                     ></span>
                   </div>
