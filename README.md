@@ -1,7 +1,10 @@
-# Vue 3 + Vite
+# E-commerce Catalog
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Merupakan sebuah website yang menampilkan produk penjualan dari beberapa kategori, antara lain:
+- Men's Clothing
+- Women's Clothing
 
-## Recommended IDE Setup
+Website ini dikembangkan sebagai bagian dari Final task dalam program Project-Based Internship di Core Initiative, dengan fokus pada bidang Front End Developer.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Anda dapat mengakses situs web melalui tautan berikut:
+- [E-commerce Catalog](https://ecommerce-catalog-nu.vercel.app/)
